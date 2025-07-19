@@ -130,7 +130,9 @@ hangman()
 4. Add score tracking for multiple rounds.
 
 ## 👤 Author
+
 Alive Peterson
+
 GitHub: @Alive-Peterson
 
 ## 🪪 License
