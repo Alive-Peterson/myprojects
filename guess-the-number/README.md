@@ -61,20 +61,23 @@ This is a simple interactive Python project with **two guessing games**:
 ## 🔢 Sample Gameplay
 
 ### 🤖 Computer Guesses
+```
 Think of a number between1 & 5 and the computer will guess it !
 Is the number 3 too low (l),too high(h) and correct(c): l
 Is the number 5 too low (l),too high(h) and correct(c): h
 Is the number 4 too low (l),too high(h) and correct(c): c
 Yay, the computer guessed your number correctly! 4
+```
 
 ### 🧍 You Guess
+```
 Enter a num between 1 and 4: 1
 Sorry, the number is too low
 Enter a num between 1 and 4: 4
 Sorry, the number is too high
 Enter a num between 1 and 4: 3
 Yay! you guessed it correct
-
+```
 
 ---
 
