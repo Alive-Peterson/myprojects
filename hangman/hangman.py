@@ -1,5 +1,5 @@
 import random
-from words import word_list  # Make sure this file exists and contains a list called word_list
+from words import word_list  
 
 def hangman():
     word = random.choice(word_list)
