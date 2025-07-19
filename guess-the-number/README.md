@@ -111,8 +111,8 @@ def guess_comp(x):
 
 guess_comp(5)
 
-###🧍 guess_user.py
-
+### 🧍 `guess_user.py`
+```python
 import random
 
 def guess_num(x):
@@ -129,7 +129,7 @@ def guess_num(x):
 
 guess_num(4)
 
-##🧠 Code Explanation:
+## 🧠 Code Explanation:
 
 guess_comp(x)
 i.The computer uses binary search logic to guess your number.
@@ -139,7 +139,7 @@ guess_num(x)
 i.You try to guess a number the computer randomly generated.
 ii.The game helps you by giving hints like "too low" or "too high".
 
-##🛠️ Customization
+## 🛠️ Customization
 
 i. Change the range: Replace 5 or 4 with any number like 100 for a bigger challenge.
 ii. Add difficulty levels.
@@ -147,9 +147,11 @@ iii. Track number of attempts.
 iv. Make inputs more user-friendly:
        feedback = input(...).strip().lower()
 
-##👤 Author
+## 👤 Author
 Alive Peterson
 GitHub: @Alive-Peterson
 
-##🪪 License
+## 🪪 License
 This project is open-source and free to use. No license required.
+
+```
