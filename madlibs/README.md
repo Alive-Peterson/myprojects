@@ -94,7 +94,9 @@ THE END.
 4. Make it a GUI with Tkinter for more fun!
 
 ## 👤 Author
+
 Alive Peterson
+
 GitHub: @Alive-Peterson
 
 
