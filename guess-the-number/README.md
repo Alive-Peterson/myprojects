@@ -78,7 +78,7 @@ Yay! you guessed it correct
 
 ---
 
-## 🧾 Sample Code
+## 🧾Code Overview
 
 ### 🤖 `guess_comp.py`
 ```python
@@ -110,6 +110,7 @@ def guess_comp(x):
     print(f"Yay, the computer guessed your number correctly! {guess}")
 
 guess_comp(5)
+```
 
 ### 🧍 `guess_user.py`
 ```python
@@ -128,6 +129,7 @@ def guess_num(x):
     print("Yay! you guessed it correct")
 
 guess_num(4)
+```
 
 ## 🧠 Code Explanation:
 
@@ -154,4 +156,3 @@ GitHub: @Alive-Peterson
 ## 🪪 License
 This project is open-source and free to use. No license required.
 
-```
