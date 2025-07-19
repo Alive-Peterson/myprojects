@@ -40,7 +40,7 @@ A simple and engaging Python terminal game where you guess a hidden word using h
    python word_guess_game.py
 
 ## 🔁 Sample Gameplay
-
+```yaml
 Game Round: 1
 Hint: It's a word that means nothing or zero.
 Remaining attempts: 3
@@ -61,6 +61,7 @@ You Win!
 
 Do you want to play again? (yes/no): no
 Thanks for playing!
+```
 
 ## 🧾 Code Snapshot
 ```python
