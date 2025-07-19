@@ -153,7 +153,9 @@ iv. Make inputs more user-friendly:
        feedback = input(...).strip().lower()
 
 ## 👤 Author
+
 Alive Peterson
+
 GitHub: @Alive-Peterson
 
 ## 🪪 License
