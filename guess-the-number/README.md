@@ -1,26 +1,36 @@
-# 🤖 Computer Guesses Your Number!
+# 🎮 Guess the Number – User & Computer Versions
 
-This is a simple interactive Python program where **you think of a number**, and the **computer guesses it** using logic and your feedback.
+This is a simple interactive Python project with **two guessing games**:
+- **🤖 Computer Guesses Your Number**
+- **🧍 You Guess the Computer's Number**
 
 ---
 
 ## 📌 Overview
 
-- You think of a number between `1` and `x` (in this code, 5).
+### 🤖 Computer Guesses Your Number
+- You think of a number between `1` and `x`.
 - The computer makes a guess.
 - You tell it whether the guess is:
   - too low (`l`)
   - too high (`h`)
   - or correct (`c`)
-- The computer continues guessing until it finds your number.
+- The computer keeps guessing until it finds your number.
+
+### 🧍 You Guess the Computer's Number
+- The computer randomly selects a number between `1` and `x`.
+- You keep guessing until you find the number.
+- The computer gives you hints whether your guess is too low or too high.
 
 ---
 
 ## 🧠 Concepts Used
 
-- **Binary search logic** (narrowing down the range based on feedback)
+- **Binary search logic** (for computer guesses)
 - **Random number generation**
-- **Interactive CLI input/output**
+- **Conditional statements**
+- **Looping and user input**
+- **Interactive CLI interface**
 
 ---
 
@@ -32,23 +42,46 @@ This is a simple interactive Python program where **you think of a number**, and
 ### ▶️ Steps to Run
 
 1. Open your terminal or command prompt.
-2. Navigate to the folder containing the `.py` file.
-3. Run the script:
-   ```bash
-   python filename.py
-  (Replace filename.py with the actual name of your Python file.)
-4. Follow the instructions in the terminal.
+2. Navigate to the folder containing the `.py` files.
+3. Run the script of your choice:
+
+   - For **computer guesses** version:
+     ```bash
+     python guess_comp.py
+     ```
+   - For **user guesses** version:
+     ```bash
+     python guess_user.py
+     ```
+
+4. Follow the instructions shown in the terminal.
+
+---
 
 ## 🔢 Sample Gameplay
 
+### 🤖 Computer Guesses
 Think of a number between1 & 5 and the computer will guess it !
 Is the number 3 too low (l),too high(h) and correct(c): l
 Is the number 5 too low (l),too high(h) and correct(c): h
 Is the number 4 too low (l),too high(h) and correct(c): c
 Yay, the computer guessed your number correctly! 4
 
-## Sample Code
+### 🧍 You Guess
+Enter a num between 1 and 4: 1
+Sorry, the number is too low
+Enter a num between 1 and 4: 4
+Sorry, the number is too high
+Enter a num between 1 and 4: 3
+Yay! you guessed it correct
 
+
+---
+
+## 🧾 Sample Code
+
+### 🤖 `guess_comp.py`
+```python
 import random
 
 def guess_comp(x):
@@ -78,23 +111,45 @@ def guess_comp(x):
 
 guess_comp(5)
 
-## 🧠 Code Explanation
+### 🧍 guess_user.py
 
-- The `guess_comp(x)` function lets the computer guess the number you're thinking of between 1 and `x`.
-- It uses a loop where the computer keeps narrowing the range based on your feedback.
-- If you say the guess is too high (`h`), the upper limit reduces.
-- If you say it's too low (`l`), the lower limit increases.
-- The loop continues until you confirm the guess is correct (`c`).
+import random
+
+def guess_num(x):
+    random_num = random.randint(1, x)
+    guess = 0
+    while guess != random_num:
+        guess = int(input(f"Enter a num between 1 and {x}: "))
+        if guess < random_num:
+            print("Sorry, the number is too low")
+        elif guess > random_num:
+            print("Sorry, the number is too high")
+
+    print("Yay! you guessed it correct")
+
+guess_num(4)
+
+## 🧠 Code Explanation:
+
+guess_comp(x)
+i.The computer uses binary search logic to guess your number.
+ii.It narrows down the range based on your feedback until it gets the correct number.
+
+guess_num(x)
+i.You try to guess a number the computer randomly generated.
+ii.The game helps you by giving hints like "too low" or "too high".
 
 ## 🛠️ Customization
 
-You can change the range by replacing 5 in guess_comp(5) with any number (e.g., guess_comp(100)).
-
-Improve user experience by trimming input and making it case-insensitive (e.g., feedback.lower().strip()).
+i. Change the range: Replace 5 or 4 with any number like 100 for a bigger challenge.
+ii. Add difficulty levels.
+iii. Track number of attempts.
+iv. Make inputs more user-friendly:
+       feedback = input(...).strip().lower()
 
 ## 👤 Author
 Alive Peterson
 GitHub: @Alive-Peterson
 
-## License
-This project is open source and free to use. No license required.
+## 🪪 License
+This project is open-source and free to use. No license required.
