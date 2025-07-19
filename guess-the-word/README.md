@@ -114,7 +114,9 @@ d. Add a score tracker across rounds.
 e. Improve input handling (e.g., case-insensitive guesses).
 
 ## 👤 Author
+
 Alive Peterson
+
 GitHub: @Alive-Peterson
 
 ## 🪪 License
