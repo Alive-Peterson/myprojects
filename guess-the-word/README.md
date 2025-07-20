@@ -70,7 +70,7 @@ game_round_count = 1
 while True:
     print(f"\nGame Round: {game_round_count}")
 
-    secret_word = "None"
+    secret_word = "none"
     hint = "Hint: It's a word that means nothing or zero."
 
     guess = ""
@@ -84,7 +84,7 @@ while True:
         if guess_count < guess_limit:
             remaining_attempts = guess_limit - guess_count
             print(f"Remaining attempts: {remaining_attempts}")
-            guess = input("Enter a Guess: ")
+            guess = input("Enter a Guess: ").lower()
             guess_count += 1
         else:
             out_of_guesses = True
