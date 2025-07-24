@@ -21,4 +21,33 @@ class TicTacToe:
         #    if spot==' ':
         #        moves.append(i)
         #return moves
+
+    def empty_squares(self):
+        return ' ' in self.board
+    
+    def num_empty_squares(self):
+        return self.board.count(' ')
+    
+    def make_move(self,square,letter):
+        #if valid move then make the move, assign square to letter
+        #then return True. if invalid return False
+        if self.board[square]==" ":
+            self.board[square]=letter
+            return True
+        return False
         
+
+def print_game(game,o_player,x_player,print_game=True):
+    if print_game:
+        game.print_board_nums()
+
+    letter='X' #starting letter
+    #iterate while the game still has empty squares
+    while game.empty_squares():
+        #gets move from appropriate player
+        if letter=='o':
+            square=o_player.get_move(game)
+        else:
+            square=x_player.get_move(game)
+
+        # a function to make move
