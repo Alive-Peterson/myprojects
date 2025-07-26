@@ -25,7 +25,7 @@ class HumanPlayer(Player):
         valid_square=False
         val=None
         while not valid_square:
-            square=input(self.letter + '\'s turn. Input move (0-9):')
+            square=input(self.letter + '\'s turn. Input move (0-8):')
             # we are going to check that it's a correct value by trying to cast it as an integer
             # and if it's not its invalid and if that spot is not available on the board we also say it's invalid
             try:
@@ -36,4 +36,4 @@ class HumanPlayer(Player):
             except ValueError:
                 print('Invalid square, Try again')
             
-            return val
+        return val
