@@ -109,8 +109,6 @@ def play(game,o_player,x_player,print_game=True):
             print("It's a tie")
     
     
-
-
 if __name__ == '__main__':
     x_player=HumanPlayer('x')
     o_player=RandomComputerPlayer('o')
