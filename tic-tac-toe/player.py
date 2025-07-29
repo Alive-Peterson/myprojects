@@ -91,7 +91,4 @@ class GeniusComputerPlayer(Player):
                 if sim_score['score']<best['score']:
                     best=sim_score #replace best
         return best
-
-
-
         
