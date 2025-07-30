@@ -1,81 +1,82 @@
-# 🎮 Terminal Tic-Tac-Toe Game (Human vs Computer)
+# 🎮 Tic Tac Toe – Human vs Genius Computer (Python CLI Game)
 
-This is a Python-based **Tic-Tac-Toe** game played in the terminal where a human player competes against a computer that picks moves at random.
+This is a Python-based terminal game of **Tic Tac Toe** where you play as `X` against a computer AI (`O`) powered by the **Minimax algorithm**. The game is fully interactive and runs in the terminal.
 
 ---
 
-## 📌 Overview
+## 📌 Features
 
-- A 3x3 grid game between Player `X` (human) and Player `O` (computer).
-- Human plays interactively via terminal.
-- The computer picks valid moves randomly.
-- The game checks for wins in rows, columns, and diagonals.
-- Includes win detection, tie detection, and alternating turns.
+- Classic **3x3 Tic Tac Toe** board
+- Play as **Player X**
+- The computer plays as **Player O** and makes intelligent decisions
+- Clear board rendering with cell numbers
+- Win, tie, and invalid-move detection
+- Playable in any terminal with Python installed
 
 ---
 
 ## 🧠 Concepts Used
 
-- **Object-Oriented Programming (OOP)**  
-  - `TicTacToe` class for managing the board and gameplay
-  - `Player`, `HumanPlayer`, and `RandomComputerPlayer` classes for players
+- **Object-Oriented Programming (OOP)**
 - **Inheritance and Polymorphism**
-- **Basic AI (Random computer moves)**
-- **Error handling and input validation**
-- **List manipulation and board state tracking**
+- **AI Decision Making** with the **Minimax algorithm**
+- **Game loop** and turn alternation
+- **User input validation**
+- **List comprehensions**, `enumerate`, and recursion
 
 ---
 
-## 🚀 How to Run
+## 🗂️ File Structure
+
+• game.py - Handles game logic, board rendering, and gameplay loop 
+• player.py - Contains Player, HumanPlayer, RandomComputerPlayer , and GeniusComputerPlayer classes 
+
+---
+
+## ▶️ How to Run
 
 ### ✅ Requirements
+- Python 3.x
 
-- Python 3.x installed
+### 📦 Steps to run:
 
-### ▶️ Steps
-
-1. Clone or download the repository.
-2. Make sure `game.py` and `player.py` are in the same folder.
-3. Open terminal in the project directory.
-4. Run the game with:
+1. Open your terminal or VS Code terminal
+2. Navigate to the folder containing both files:
+   ```bash
+   cd path/to/tic-tac-toe
+   ```
+3. Run the game.
    ```bash
    python game.py
    ```
 
-## 🕹️ Gameplay Instructions
+## 🕹️ Controls
 
-• You'll be prompted to input a number from 0-8 for your move.
-• The board is numbered like this:
-```text
+• You'll be prompted to choose a square from 0 to 8 on your turn.
+• The board layout is numbered like this:
+```
 | 0 | 1 | 2 |
 | 3 | 4 | 5 |
 | 6 | 7 | 8 |
 ```
-• Example flow:
-```text
-x's turn. Input move (0-8): 0
-x make a move to square 0
-| x |   |   |
-|   |   |   |
-|   |   |   |
+• Enter the number corresponding to the square where you want to place your X.
 
-o make a move to square 4
-...
-```
+## 🧠 About the AI (GeniusComputerPlayer)
 
-• The game ends when:
-   a. One player has 3 in a row (→ win)
-   b. The board is full with no winner (→ tie)
+• On its first move, it picks randomly (for speed).
+• After that, it uses the Minimax algorithm to determine the best move.
+• It will never lose if played optimally and often wins.
 
-## 🧾 File Structure
+## 🛠️ Customization Ideas
 
-game.py    - 	Contains the core game logic and board setup
-player.py  -    Defines the Human and RandomComputer players
+• Add a score counter for multiple rounds.
+• Allow human vs human or computer vs computer modes.
+• Implement difficulty levels (easy = random, hard = minimax).
+• Add GUI using tkinter or pygame.
 
-## 🔁 Customization Ideas
+## 👤 Author
+Alive Peterson
+GitHub: @Alive-Peterson
 
-Replace RandomComputerPlayer with a smarter AI (like Minimax).
-
-Add support for 2 human players.
-
-Track and display player score over multiple rounds.
+## 🪪 License
+This project is free to use, modify, and distribute. No license required.
