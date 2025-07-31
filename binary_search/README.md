@@ -39,9 +39,13 @@ Binary Search Time: 1.9651412963867187e-06 seconds
 ## 📚 Concepts Demonstrated
 
 • Search algorithm comparison
+
 • Recursion
+
 • Timing code with time.time()
+
 • List generation and sorting
+
 • Performance benchmarking
 
 ## ✅ Requirements
