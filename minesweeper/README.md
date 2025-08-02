@@ -84,33 +84,27 @@ in the last line of the script.
 
 • Difficulty ideas:
 
-Easy: dim_size=8, num_bombs=8
+      Easy: dim_size=8, num_bombs=8
 
-Medium: dim_size=10, num_bombs=15
+      Medium: dim_size=10, num_bombs=15
 
-Hard: dim_size=15, num_bombs=40
+      Hard: dim_size=15, num_bombs=40
 
 ## 🧾 Code Structure
 
-Board class handles:
+1. Board class handles:
 
-   Grid generation
+• Grid generation
+• Bomb placement
+• Value assignment
+• Digging logic
+• Board display
 
-   Bomb placement
+2. play() function:
 
-   Value assignment
-
-   Digging logic
-
-   Board display
-
-play() function:
-
-   Main game loop
-
-   Handles player input
-
-   Ends game on win/loss
+• Main game loop
+• Handles player input
+• Ends game on win/loss
 
 ## 👤 Author
 Alive Peterson
