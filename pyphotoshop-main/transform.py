@@ -53,8 +53,14 @@ def blur(image, kernel_size):
                     for y_i in range(max(0, y-neighbour_range), min(y_pixels -1, y + neighbour_range) + 1):
                         total += image.array[x_i, y_i, c]
                 new_im.array[x, y, c] = total / (kernel_size**2)
-    return new_im           
-    
+    return new_im          
+
+
+#note: this blur implemented above is a kernel of size n, where each value is l/n^2
+#for eaxmple k=3, kernel would be
+#[1/3  1/3  1/3]
+#[1/3  1/3  1/3]
+#[1/3  1/3  1/3]
 
 def apply_kernel(image, kernel):
     # the kernel should be a 2D array that represents the kernel we'll use!
@@ -63,7 +69,25 @@ def apply_kernel(image, kernel):
     # [1 0 -1]
     # [2 0 -2]
     # [1 0 -1]
-    pass
+    x_pixels, y_pixels, num_channels = image.array.shape
+    new_im = Image(x_pixels = x_pixels, y_pixels = y_pixels, num_channels = num_channels)
+    
+    kernel_size = kernel.shape[0]
+    neighbour_range=kernel_size // 2 #how many neighbours to one side we need to look at
+
+    for x in range(x_pixels):
+        for y in range(y_pixels):
+            for c in range(num_channels):
+                total=0
+                for x_i in range(max(0, x-neighbour_range), min(x_pixels -1, x + neighbour_range) + 1):
+                    for y_i in range(max(0, y-neighbour_range), min(y_pixels -1, y + neighbour_range) + 1):
+                        #we need to find which of the value this kernel corresponds to
+                        x_k = x_i + neighbour_range - x
+                        y_k = y_i + neighbour_range - y
+                        kernel_val = kernel[x_k, y_k]
+                        total += image.array[x_i, y_i, c] * kernel_val
+                new_im.array[x,y,c] = total
+    return new_im
 
 def combine_images(image1, image2):
     # let's combine two images using the squared sum of squares: value = sqrt(value_1**2, value_2**2)
@@ -91,9 +115,28 @@ if __name__ == '__main__':
     #decr_contrast.write_image('decreased_contrast.png')
 
     #blur with kernel 3
-    blur_3 = blur(city,3)
-    blur_3.write_image('blur_k3.png')
+    #blur_3 = blur(city,3)
+    #blur_3.write_image('blur_k3.png')
     
     #blur with kernel 15
-    blur_15 = blur(city,15)
-    blur_15.write_image('blur_k15.png')
+    #blur_15 = blur(city,15)
+    #blur_15.write_image('blur_k15.png')
+
+    #sobel edge detection kernel
+    sobel_x_kernel = np.array(
+        [[1, 2, 1],
+         [0, 0, 0],
+         [-1, -2, -1]]
+    )
+
+    sobel_y_kernel = np.array(
+        [[1,0,-1],
+         [2,0,-2],
+         [1,0,-1]]
+    )
+
+    sobel_x = apply_kernel(city,sobel_x_kernel)
+    sobel_x.write_image('edge_x.png')
+
+    sobel_y = apply_kernel(city,sobel_y_kernel)
+    sobel_y.write_image('edge_y.png')
