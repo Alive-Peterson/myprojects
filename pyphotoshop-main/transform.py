@@ -42,14 +42,19 @@ def blur(image, kernel_size):
     x_pixels, y_pixels, num_channels = image.array.shape
     new_im = Image(x_pixels = x_pixels, y_pixels = y_pixels, num_channels = num_channels)
     
+    neighbour_range=kernel_size // 2 #how many neighbours to one side we need to look at
+
     for x in range(x_pixels):
         for y in range(y_pixels):
             for c in range(num_channels):
                 #using naive implementation of searching through elements and summing up
                 total=0
-
+                for x_i in range(max(0, x-neighbour_range), min(x_pixels -1, x + neighbour_range) + 1):
+                    for y_i in range(max(0, y-neighbour_range), min(y_pixels -1, y + neighbour_range) + 1):
+                        total += image.array[x_i, y_i, c]
+                new_im.array[x, y, c] = total / (kernel_size**2)
     return new_im           
-    pass
+    
 
 def apply_kernel(image, kernel):
     # the kernel should be a 2D array that represents the kernel we'll use!
@@ -78,9 +83,17 @@ if __name__ == '__main__':
     #darkened_im.write_image('darkened.png')
     
     #increase contrast
-    incr_contrast = adjust_contrast(lake, 2, mid=0.5)
-    incr_contrast.write_image('increased_contrast.png')
+    #incr_contrast = adjust_contrast(lake, 2, mid=0.5)
+    #incr_contrast.write_image('increased_contrast.png')
 
     #decrease contrast
-    decr_contrast = adjust_contrast(lake, 0.5, mid=0.5)
-    decr_contrast.write_image('decreased_contrast.png')
+    #decr_contrast = adjust_contrast(lake, 0.5, mid=0.5)
+    #decr_contrast.write_image('decreased_contrast.png')
+
+    #blur with kernel 3
+    blur_3 = blur(city,3)
+    blur_3.write_image('blur_k3.png')
+    
+    #blur with kernel 15
+    blur_15 = blur(city,15)
+    blur_15.write_image('blur_k15.png')
