@@ -92,51 +92,63 @@ def apply_kernel(image, kernel):
 def combine_images(image1, image2):
     # let's combine two images using the squared sum of squares: value = sqrt(value_1**2, value_2**2)
     # size of image1 and image2 MUST be the same
-    pass
+    x_pixels, y_pixels, num_channels = image1.array.shape
+    new_im=Image(x_pixels=x_pixels, y_pixels=y_pixels, num_channels=num_channels)
+
+    for x in range(x_pixels):
+        for y in range(y_pixels):
+            for c in range(num_channels):
+                new_im.array[x, y, c] = (image1.array[x, y, c]**2 + image2.array[x, y, c]**2)**0.5
+    return new_im
+    
     
 if __name__ == '__main__':
     lake = Image(filename ='lake.png')
     city = Image(filename ='city.png')
 
     #brightening the lake image!
-    #brightened_im = adjust_brighteness(lake,1.7)
-    #brightened_im.write_image('brightened.png')
+    brightened_im = adjust_brighteness(lake,1.7)
+    brightened_im.write_image('brightened.png')
 
     #darkening the image !
-    #darkened_im=adjust_brighteness(lake,0.4)
-    #darkened_im.write_image('darkened.png')
+    darkened_im=adjust_brighteness(lake,0.4)
+    darkened_im.write_image('darkened.png')
     
     #increase contrast
-    #incr_contrast = adjust_contrast(lake, 2, mid=0.5)
-    #incr_contrast.write_image('increased_contrast.png')
+    incr_contrast = adjust_contrast(lake, 2, mid=0.5)
+    incr_contrast.write_image('increased_contrast.png')
 
     #decrease contrast
-    #decr_contrast = adjust_contrast(lake, 0.5, mid=0.5)
-    #decr_contrast.write_image('decreased_contrast.png')
+    decr_contrast = adjust_contrast(lake, 0.5, mid=0.5)
+    decr_contrast.write_image('decreased_contrast.png')
 
     #blur with kernel 3
-    #blur_3 = blur(city,3)
-    #blur_3.write_image('blur_k3.png')
+    blur_3 = blur(city,3)
+    blur_3.write_image('blur_k3.png')
     
     #blur with kernel 15
-    #blur_15 = blur(city,15)
-    #blur_15.write_image('blur_k15.png')
+    blur_15 = blur(city,15)
+    blur_15.write_image('blur_k15.png')
 
     #sobel edge detection kernel
     sobel_x_kernel = np.array(
-        [[1, 2, 1],
-         [0, 0, 0],
-         [-1, -2, -1]]
-    )
+       [[1, 2, 1],
+        [0, 0, 0],
+        [-1, -2, -1]])
+    
 
     sobel_y_kernel = np.array(
         [[1,0,-1],
          [2,0,-2],
-         [1,0,-1]]
-    )
+         [1,0,-1]])
+    
 
     sobel_x = apply_kernel(city,sobel_x_kernel)
     sobel_x.write_image('edge_x.png')
 
     sobel_y = apply_kernel(city,sobel_y_kernel)
     sobel_y.write_image('edge_y.png')
+
+    #combining the images
+    sobel_xy=combine_images(sobel_x,sobel_y)
+    sobel_xy.write_image('edge_xy.png')
