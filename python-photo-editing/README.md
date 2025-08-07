@@ -1,6 +1,6 @@
 # 🖼️ PyPhotoshop – A Simple Image Processing Library
 
-**PyPhotoshop** is a Python-based mini image processing toolkit that supports various effects like brightness adjustment, contrast manipulation, blurring, kernel filtering, and edge detection — all using just NumPy and basic image handling.
+**python-photo-editing** is a Python-based mini image processing toolkit that supports various effects like brightness adjustment, contrast manipulation, blurring, kernel filtering, and edge detection — all using just NumPy and basic image handling.
 
 ---
 
