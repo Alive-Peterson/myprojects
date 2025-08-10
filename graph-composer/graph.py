@@ -4,6 +4,8 @@ class Vertex(object):
     def __init__(self, value):
         self.value = value
         self.adjacent = {}
+        self.neighbours = []
+        self.neighbours_weights = []
 
     def add_edge_to(self, vertex, weight=0):
         #adding an edge to the vertex we input as weight
@@ -18,28 +20,37 @@ class Vertex(object):
 
     # initializes probability map
     def get_probability_map(self):
-        pass
+        for (vertex, weight) in self.adjacent.items():
+            self.neighbours.append(vertex)
+            self.neighbours_weights.append(weight)
 
     def next_word(self):
-        pass
+        #randomly selects the next word based on weights
+        return random.choices(self.neighbours, weights=self.neighbours_weights)
 
 
+# making a graph class
 
 class Graph(object):
     def __init__(self):
-        pass
+        self.vertices = {}
 
     def get_vertex_values(self):
-        pass
+        return set(self.vertices.keys())
 
     def add_vertex(self, value):
-        pass
+        #returns all the possible words
+        self.vertices[value] = Vertex(value)
 
     def get_vertex(self, value):
-        pass
-
+        #what if the value isn't in the graph?
+        if value not in self.vertices:
+            self.add_vertex(value)
+        return self.vertices[value]  #gets the vertex 
+    
     def get_next_word(self, current_vertex):
-        pass
+        self.vertices[current_vertex.value].next_word()
 
     def generate_probability_mappings(self):
-        pass
+        for vertex in self.vertices.values():
+            vertex.get_probabilty_map()
