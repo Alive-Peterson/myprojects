@@ -15,13 +15,16 @@ def get_words_from_text(text_path):
     return words
 
 def make_graph(words):
-    pass
-
+    g = Graph()
+#for each word we check if it is in the graph if not we add it 
+    for word in words:
+        word_vertex = g.get_vertex(word)
+        
 def compose(g, words, length=50):
     pass
 
 def main():
-    pass
+    words = get_words_from_text('texts/hp_sorceror_stone.txt')
 
 
 if __name__ == '__main__':
