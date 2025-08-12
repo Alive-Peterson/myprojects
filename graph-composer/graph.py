@@ -8,28 +8,27 @@ class Vertex(object):
         self.neighbours_weights = []
 
     def add_edge_to(self, vertex, weight=0):
-        #adding an edge to the vertex we input as weight
+        # Add an edge to the vertex with given weight
         self.adjacent[vertex] = weight
 
     def increment_edge(self, vertex):
-        #incrementing the weight of the edge
+        # Increment the weight of the edge
         self.adjacent[vertex] = self.adjacent.get(vertex, 0) + 1
 
     def get_adjacent_nodes(self):
-        pass
+        # Optionally return adjacent vertices (not used in your current code)
+        return list(self.adjacent.keys())
 
-    # initializes probability map
+    # Initializes probability map
     def get_probability_map(self):
         for (vertex, weight) in self.adjacent.items():
             self.neighbours.append(vertex)
             self.neighbours_weights.append(weight)
 
     def next_word(self):
-        #randomly selects the next word based on weights
-        return random.choices(self.neighbours, weights=self.neighbours_weights)
+        # Randomly selects the next word based on weights
+        return random.choices(self.neighbours, weights=self.neighbours_weights)[0]
 
-
-# making a graph class
 
 class Graph(object):
     def __init__(self):
@@ -39,18 +38,18 @@ class Graph(object):
         return set(self.vertices.keys())
 
     def add_vertex(self, value):
-        #returns all the possible words
+        # Add a new vertex to the graph
         self.vertices[value] = Vertex(value)
 
     def get_vertex(self, value):
-        #what if the value isn't in the graph?
+        # Retrieve the vertex, creating it if it doesn't exist
         if value not in self.vertices:
             self.add_vertex(value)
-        return self.vertices[value]  #gets the vertex 
-    
+        return self.vertices[value]
+
     def get_next_word(self, current_vertex):
         return self.vertices[current_vertex.value].next_word()
 
     def generate_probability_mappings(self):
         for vertex in self.vertices.values():
-            vertex.get_probabilty_map()
+            vertex.get_probability_map()  # ✅ fixed spelling

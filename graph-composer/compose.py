@@ -1,62 +1,51 @@
 import os
-import re
 import string
 import random
-
 from graph import Graph, Vertex
 
-def get_words_from_text(text_path):
-    with open (text_path, 'r') as f:
+def get_words_from_text(filename):
+    # Get the absolute path to the texts folder next to this script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    text_path = os.path.join(script_dir, "texts", filename)
+
+    print("DEBUG: Looking for file at:", text_path)
+
+    if not os.path.exists(text_path):
+        raise FileNotFoundError(f"File not found at: {text_path}")
+
+    with open(text_path, 'r', encoding='utf-8') as f:
         text = f.read()
-        text = ' '.join(text.split()) #turns whitespaces into just spaces
-        text = text.lower() #makes everything lower case inorder to compare 
-        text = text.translate(str.maketrans('','', string.punctuation)) # removes all the punctuations
-    words = text.split() # splits on spaces again
-    return words
+        text = ' '.join(text.split())  # normalize spaces
+        text = text.lower()  # lowercase for uniformity
+        text = text.translate(str.maketrans('', '', string.punctuation))  # remove punctuation
+
+    return text.split()
 
 def make_graph(words):
     g = Graph()
     previous_word = None
-    #for each word we check if it is in the graph if not we add it 
     for word in words:
         word_vertex = g.get_vertex(word)
-        # if there is a previous word, then add an edge if it does not already exist
         if previous_word:
             previous_word.increment_edge(word_vertex)
-
-        # set our word to previous word and then iterate
         previous_word = word_vertex
-
-        #generate the probability mappings before composing
     g.generate_probability_mappings()
     return g
 
-
-
-
 def compose(g, words, length=50):
     composition = []
-    word = g.get_vertex(random.choice(words)) #pick a random word to start
+    word = g.get_vertex(random.choice(words))  # pick random start
     for _ in range(length):
         composition.append(word.value)
         word = g.get_next_word(word)
-
     return composition
 
-
-
-
 def main():
-    #get words from text
-    words = get_words_from_text('texts/hp_sorceror_stone.txt')
-
-    #make a graph using those words
+    # Use only the filename here — folder is handled in get_words_from_text()
+    words = get_words_from_text('hp_sorcerer_stone.txt')
     g = make_graph(words)
-
-    #get the next word for x number of words (defined by user)
-    #show the user
     composition = compose(g, words, 100)
-    return ' '.join(composition) #returns a string where all the words seperated by space
+    print(' '.join(composition))
 
 if __name__ == '__main__':
     main()
