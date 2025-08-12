@@ -52,4 +52,4 @@ class Graph(object):
 
     def generate_probability_mappings(self):
         for vertex in self.vertices.values():
-            vertex.get_probability_map()  # ✅ fixed spelling
+            vertex.get_probability_map() 
