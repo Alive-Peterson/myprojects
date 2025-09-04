@@ -18,4 +18,9 @@ def add_expense():
 
     conn = get_connection()
     cursor = conn.cursor()
-
+    sql = "INSERT INTO expense_transactions (txn_date, amount, category, notes) VALUES (%s, %s, %s, %s)"
+    values = (date, amount, category, notes)
+    cursor.execute(sql, values)
+    conn.commit()
+    print(f"✅ Expense added with ID {cursor.lastrowid}")
+    conn.close()
