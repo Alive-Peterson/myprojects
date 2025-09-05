@@ -10,6 +10,7 @@ def get_connection():
         database="projects"
     )
 
+# for adding new expense
 def add_expense():
     date=input("Enter Date (DD-MM-YYYY):")
     amount=float(input("Enter the amount:"))
@@ -24,3 +25,9 @@ def add_expense():
     conn.commit()
     print(f"✅ Expense added with ID {cursor.lastrowid}")
     conn.close()
+
+# for viewing summary by category 
+def view_summary_by_category():
+    conn = get_connection
+    cursor = conn.cursor()
+
