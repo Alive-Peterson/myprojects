@@ -7,7 +7,7 @@ def get_connection():
         host="localhost",
         user="root",          
         password="llawlietnate",
-        database="projects"
+        database="myprojects"
     )
 
 # for adding new expense
