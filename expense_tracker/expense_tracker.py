@@ -30,7 +30,7 @@ def add_expense():
 def view_summary_by_category():
     conn = get_connection
     cursor = conn.cursor()
-    sql = "SELECT category, SUM(amount) FROM transactions GROUP BY category"
+    sql = "SELECT category, SUM(amount) FROM expense_transactions GROUP BY category"
     cursor.execute(sql)
     rows=cursor.fetchall
 
@@ -43,10 +43,10 @@ def view_summary_by_category():
 def view_monthly_total():
     conn = get_connection
     cursor = conn.cursor()
-    sql = """SELECT SUM(amount)
-            FROM transactions
-            WHERE MONTH(txn_date) = MONTH(CURDATE())
-            AND YEAR(txn_date) = YEAR(CURDATE())"""
+    sql = """ SELECT SUM(amount)
+              FROM expense_transactions
+              WHERE MONTH(txn_date) = MONTH(CURDATE())
+              AND YEAR(txn_date) = YEAR(CURDATE()) """
     cursor.execute(sql)
     total = cursor.fetchone()[0]
     print("\n Monthly Total:", total if total else 0)
