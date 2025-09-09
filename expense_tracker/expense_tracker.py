@@ -51,3 +51,22 @@ def view_monthly_total():
     total = cursor.fetchone()[0]
     print("\n Monthly Total:", total if total else 0)
     conn.close()
+
+    #import from csv
+    def import_from_csv():
+        filepath = input("Enter csv file path:")
+        try:
+            with open(filepath, mode='r') as file:
+                reader = csv.DictReader(file)
+                data = [(row["txn_date"], float(row["amount"]), row["category"], row["notes"]) for row in reader]
+
+            conn=get_connection()
+            cursor = conn.cursor()
+            sql = "INSERT INTO expense_transactions (txn_date, amount, category, notes) VALUES (%s, %s, %s, %s)"
+            cursor.executemany(sql,data)
+            conn.commit()
+            print(f"Imported {cursor.rowcount} from csv file")
+            conn.close()
+        
+        except Exception as e:
+            print("Error importing csv:", e)
