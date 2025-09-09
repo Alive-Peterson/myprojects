@@ -4,18 +4,18 @@ import matplotlib
 
 def get_connection():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",          
-        password="llawlietnate",
-        database="myprojects"
+        host = "localhost",
+        user = "root",          
+        password = "llawlietnate",
+        database = "myprojects"
     )
 
 # for adding new expense
 def add_expense():
-    date=input("Enter Date (DD-MM-YYYY):")
-    amount=float(input("Enter the amount:"))
-    category=input("Enter Category:")
-    notes=input("Enter notes(Optional):")
+    date = input("Enter Date (YYYY-MM-DD):")
+    amount = float(input("Enter the amount:"))
+    category = input("Enter Category:")
+    notes = input("Enter notes(Optional):")
 
     conn = get_connection()
     cursor = conn.cursor()
@@ -52,21 +52,36 @@ def view_monthly_total():
     print("\n Monthly Total:", total if total else 0)
     conn.close()
 
-    #import from csv
-    def import_from_csv():
-        filepath = input("Enter csv file path:")
-        try:
-            with open(filepath, mode='r') as file:
-                reader = csv.DictReader(file)
-                data = [(row["txn_date"], float(row["amount"]), row["category"], row["notes"]) for row in reader]
+#import from csv
+def import_from_csv():
+    filepath = input("Enter csv file path:")
+    try:
+        with open(filepath, mode='r') as file:
+            reader = csv.DictReader(file)
+            data = [(row["txn_date"], float(row["amount"]), row["category"], row["notes"]) for row in reader]
 
-            conn=get_connection()
-            cursor = conn.cursor()
-            sql = "INSERT INTO expense_transactions (txn_date, amount, category, notes) VALUES (%s, %s, %s, %s)"
-            cursor.executemany(sql,data)
-            conn.commit()
-            print(f"Imported {cursor.rowcount} from csv file")
-            conn.close()
-        
-        except Exception as e:
-            print("Error importing csv:", e)
+        conn = get_connection()
+        cursor = conn.cursor()
+        sql = "INSERT INTO expense_transactions (txn_date, amount, category, notes) VALUES (%s, %s, %s, %s)"
+        cursor.executemany(sql,data)
+        conn.commit()
+        print(f"Imported {cursor.rowcount} from csv file")
+        conn.close()
+
+    except Exception as e:
+        print("Error importing csv:", e)
+
+#visualization(bargraph and pie chart using matplotlib)
+def visualize_expense():
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT category, SUM(amount FROM expense_transactions GROUP BY category)")
+    rows = cursor.fetchall()
+    conn.close()
+
+    if not rows:
+        print("No Data to Visualize")
+        return
+
+    categories = [row[0] for row in rows]
+    total = [float(row[1] for row in rows)]
