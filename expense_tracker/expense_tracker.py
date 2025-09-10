@@ -23,7 +23,7 @@ def add_expense():
     values = (date, amount, category, notes)
     cursor.execute(sql, values)
     conn.commit()
-    print(f"✅ Expense added with ID {cursor.lastrowid}")
+    print(f"Expense added with ID {cursor.lastrowid}")
     conn.close()
 
 # for viewing summary by category 
