@@ -1,6 +1,6 @@
 import mysql.connector
 import csv
-import matplotlib
+import matplotlib as plt
 
 def get_connection():
     return mysql.connector.connect(
@@ -84,4 +84,53 @@ def visualize_expense():
         return
 
     categories = [row[0] for row in rows]
-    total = [float(row[1] for row in rows)]
+    totals = [float(row[1] for row in rows)]
+
+    #bar graph
+    plt.figure(figure=(10,5))
+    plt.bar(categories, totals, colour="skyblue")
+    plt.title("Expenses by category(BarGraph):")
+    plt.xlabe("Category")
+    plt.ylabel("TotalAmount")
+    plt.show()
+
+    #pie chart
+    plt.figure(figure=(8,8))
+    plt.pie(totals, labels=categories, autopct="%1.1f%%", startangle=140)
+    plt.title("Expenses by Category (Pie Chart)")
+    plt.show()
+
+# main function
+
+def menu():
+    while True:
+        print("\n-----Expense Tracker-----")
+        print("1. Add Transaction")
+        print("2. View summary by category")
+        print("3. View monthly expense")
+        print("4. Import from csv")
+        print("5. Visualize expenses")
+        print("6. Exit")
+
+        choice = input("Enter your choice:")
+
+        if choice == "1":
+            add_expense()
+        elif choice == "2":
+            view_summary_by_category()
+        elif choice == "3":
+            view_monthly_total()
+        elif choice == "4":
+            import_from_csv()
+        elif choice == "5":
+            visualize_expense()
+        elif choice == "6":
+            break
+
+        else:
+            print("Invalid Input, Try Again")
+
+if __name__ == "__main__":
+    print("Connected to MySQL")
+    menu()
+            
