@@ -65,7 +65,7 @@ python expense_tracker.py
 ```
 
 You will see a menu like this:
-```python
+```text
 -----Expense Tracker-----
 1. Add Transaction
 2. View summary by category
