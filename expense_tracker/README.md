@@ -79,7 +79,7 @@ Choose an option by entering its number.
 ## 📊 Example Usage
 
 1️⃣ Adding an Expense
-```python
+```text
 Enter Date (YYYY-MM-DD): 2025-09-10
 Enter the amount: 250
 Enter Category: Food
