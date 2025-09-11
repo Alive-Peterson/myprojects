@@ -1,6 +1,6 @@
 import mysql.connector
 import csv
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 def get_connection():
     return mysql.connector.connect(
@@ -28,11 +28,11 @@ def add_expense():
 
 # for viewing summary by category 
 def view_summary_by_category():
-    conn = get_connection
+    conn = get_connection()
     cursor = conn.cursor()
     sql = "SELECT category, SUM(amount) FROM expense_transactions GROUP BY category"
     cursor.execute(sql)
-    rows=cursor.fetchall
+    rows=cursor.fetchall()
 
     print("\n Summary by Category:")
     for category, total in rows:
@@ -41,7 +41,7 @@ def view_summary_by_category():
 
 #for viewing monthly total
 def view_monthly_total():
-    conn = get_connection
+    conn = get_connection()
     cursor = conn.cursor()
     sql = """ SELECT SUM(amount)
               FROM expense_transactions
@@ -65,7 +65,7 @@ def import_from_csv():
         sql = "INSERT INTO expense_transactions (txn_date, amount, category, notes) VALUES (%s, %s, %s, %s)"
         cursor.executemany(sql,data)
         conn.commit()
-        print(f"Imported {cursor.rowcount} from csv file")
+        print(f"Imported {cursor.rowcount} rows from CSV file")
         conn.close()
 
     except Exception as e:
@@ -75,7 +75,7 @@ def import_from_csv():
 def visualize_expense():
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT category, SUM(amount FROM expense_transactions GROUP BY category)")
+    cursor.execute("SELECT category, SUM(amount) FROM expense_transactions GROUP BY category")
     rows = cursor.fetchall()
     conn.close()
 
@@ -84,21 +84,26 @@ def visualize_expense():
         return
 
     categories = [row[0] for row in rows]
-    totals = [float(row[1] for row in rows)]
+    totals = [float(row[1]) for row in rows]
 
     #bar graph
-    plt.figure(figure=(10,5))
-    plt.bar(categories, totals, colour="skyblue")
-    plt.title("Expenses by category(BarGraph):")
-    plt.xlabe("Category")
-    plt.ylabel("TotalAmount")
-    plt.show()
+    def bar_graph():
+        plt.figure(figsize=(10,5))
+        plt.bar(categories, totals, color="skyblue")
+        plt.title("Expenses by category(BarGraph):")
+        plt.xlabel("Category")
+        plt.ylabel("TotalAmount")
+        plt.show()
+    
+    #piechart
+    def piechart():
+        plt.figure(figsize=(8,8))
+        plt.pie(totals, labels=categories, autopct="%1.1f%%", startangle=140)
+        plt.title("Expenses by Category (Pie Chart)")
+        plt.show()
 
-    #pie chart
-    plt.figure(figure=(8,8))
-    plt.pie(totals, labels=categories, autopct="%1.1f%%", startangle=140)
-    plt.title("Expenses by Category (Pie Chart)")
-    plt.show()
+    return bar_graph, piechart
+    
 
 # main function
 
@@ -123,7 +128,16 @@ def menu():
         elif choice == "4":
             import_from_csv()
         elif choice == "5":
-            visualize_expense()
+            bar_graph, piechart = visualize_expense() 
+            print("a. BarGraph")
+            print("b. PieChart")
+            graph_choice = input("Choose the graph style: ")
+            if graph_choice == "a":
+                bar_graph()
+            elif graph_choice == "b":
+                piechart()
+            else:
+                print("Invalid input")
         elif choice == "6":
             break
 
