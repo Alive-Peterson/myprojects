@@ -1,13 +1,15 @@
 import mysql.connector
 import csv
 import matplotlib.pyplot as plt
+from getpass import getpass
 
 def get_connection():
+    db_password = getpass.getpass("Enter MySQL password: ")
     return mysql.connector.connect(
-        host = "localhost",
-        user = "root",          
-        password = "llawlietnate",
-        database = "myprojects"
+        host="localhost",
+        user="root",
+        password=db_password,
+        database="myprojects"
     )
 
 # for adding new expense
