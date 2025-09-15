@@ -1,7 +1,7 @@
 import mysql.connector
 import csv
 import matplotlib.pyplot as plt
-from getpass import getpass
+import getpass
 
 def get_connection():
     db_password = getpass.getpass("Enter MySQL password: ")
