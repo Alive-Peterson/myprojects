@@ -84,17 +84,77 @@ def add_product():
     description = input("Enter Description :")
     price = float(input("Enter price of product :"))
     stock = int(input("Enter stock :"))
-    category_id = int(input("Enter category id :"))
-    sql = "INSERT INTO products VALUES(product_name, description, price, stock, category_id) VALUES (%s, %s, %s, %s, %s)"
+    category_id = int(input("Enter category ID :"))
+    sql = "INSERT INTO products (product_name, description, price, stock, category_id) VALUES (%s, %s, %s, %s, %s)"
     values = (product_name, description, price, stock, category_id if category_id != 0 else None)
+    cursor.execute(sql,values)
     conn.commit()
     conn.close()
     print("Product Added successfully")
 
 
-#
+#placing order
+def place_order(user_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    view_products()
+    product_id = int(input("Enter product ID:"))
+    quantity = int(input("Enter the quantity:"))
+    sql = "SELECT product_id, stock FROM products WHERE product_id = %s"
+    values = (product_id,)
+    cursor.execute(sql, values)
+    row = cursor.fetchone()
 
+    if not row:
+        print("Invalid product")
+        conn.close()
+        return
+    
+    price, stock = row
+    if quantity > stock:
+        print("Not enough stock")
+        conn.close()
+        return
+    
+    total_amount = price*quantity
+    
+    #insert into orders
+    sql = "INSERT INTO orders(user_id, total_amount, status) VALUES(%s, %s, 'pending')" 
+    values = (user_id, total_amount)
+    order_id = cursor.lastrowid
 
+    #insert into order_items
+    sql = "INSERT INTO order_items(order_id, product_id, quantity, price) VALUES(%s, %s, %s, %s)"
+    values = (order_id, product_id, quantity, price)
+
+    #Updating stock
+    sql = "UPDATE products SET stock= stock - %s WHERE product_id = %s"
+    values = (quantity, product_id)
+    cursor.execute(sql, values)
+    conn.commit()
+    conn.close()
+    print(f"Order placed successfully, Total Amount:{total_amount}")
+
+# making payment
+def make_payment(user_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    order_id = int(input("Enter your order ID:"))
+    #fetching the total amount from orders table
+    sql = "SELECT total_amount FROM orders WHERE order_id = %s AND user_id = %s"
+    cursor.execute(sql, (order_id, user_id))
+    result = cursor.fetchone()
+
+    if not result:
+        print("Invalid order ID, please try again")
+        conn.close()
+        return
+    
+    amount = result[0]
+    payment_type = ("Enter your payment type(credit card / Debit Card / UPI / Net Banking / Cash on Delivery): )")
+
+    #inserting into payments table
+    
 
 
 
