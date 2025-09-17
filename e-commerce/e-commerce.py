@@ -119,7 +119,7 @@ def place_order(user_id):
     total_amount = price*quantity
     
     #insert into orders
-    sql = "INSERT INTO orders(user_id, total_amount, status) VALUES(%s, %s, 'pending')" 
+    sql = "INSERT INTO orders(user_id, total_amount, status) VALUES(%s, %s, 'Pending')" 
     values = (user_id, total_amount)
     order_id = cursor.lastrowid
 
@@ -133,7 +133,7 @@ def place_order(user_id):
     cursor.execute(sql, values)
     conn.commit()
     conn.close()
-    print(f"Order placed successfully, Total Amount:{total_amount}")
+    print(f"Order placed successfully, Total Amount:₹{total_amount}")
 
 # making payment
 def make_payment(user_id):
@@ -154,8 +154,67 @@ def make_payment(user_id):
     payment_type = ("Enter your payment type(credit card / Debit Card / UPI / Net Banking / Cash on Delivery): )")
 
     #inserting into payments table
+    sql = "INSERT INTO payments(order_id, amount, payment_type, status) VALUES(%s, %s, %s, 'Completed')"
+    values = (order_id, amount, payment_type)
+    cursor.execute(sql, values)
+
+    #update orders table that product is shipped
+    sql = "UPDATE orders SET status = 'Shipped' WHERE order_id = %s"
+    values = (order_id,)
+    cursor.execute(sql, values)
+
+    conn.commit()
+    conn.close()
+    print(f"Payment of ₹{amount} was successfull")
+
+#viewing orders
+def view_orders():
+    conn = get_connection()
+    cursor = conn.cursor()
+    order_id = int(input("Enter your order ID to view your order:"))
+    sql = "SELECT order_id, order_date, status, total_amount FROM orders WHERE order_id = %s"
+    values = (order_id) 
+    cursor.execute(sql,values)
+    orders = cursor.fetchall()
+    print("\n----Your Order----")
+    for order in orders:
+        print(f"order ID:{order[0]} | Order Date:{order[1]} | Status:{order[2]} | Total:₹{order[3]}")
+
+        sql = """ SELECT p.product_name, oi.quantity, oi.price
+                  FROM order_items oi
+                  JOIN products ON oi.product_id = p.product_id
+                  WHERE oi.order_id = %s"""
+        values = (sql, (order[0],))
+        cursor.execute(sql, values)
+        items = cursor.fetchall()
+        for item in items:
+            print(f"- {item[0]} x{item[1]} @ ₹{item[2]}")
+    conn.close()
+
+#reports 
+def reports():
+    conn = get_connection()
+    cursor = conn.cursor()
+    print("\n---- Reports ----")
+
+    print("\nTop Selling Products:")
+    sql = """SELECT p.product_name, SUM(oi.quantity) as total_sold
+             FROM order_items oi
+             JOIN products p ON oi.product_id = p.product_id
+             GROUP BY oi.product_id
+             ORDER BY total_sold DESC LIMIT 5"""
+    cursor.execute(sql)
+    for row in cursor.fetchall():
+        print(f"{row[0]} - {row[1]} sold")
     
+    print("\nOrders by Status:")
+    sql = "SELECT status, COUNT(*) FROM orders GROUP BY status"
+    cursor.execute(sql)
+    for row in cursor.fetchall():
+        print(f"{row[0]}: {row[1]}")
 
+    conn.close()
 
-
-
+#main function
+def main():
+    pass
