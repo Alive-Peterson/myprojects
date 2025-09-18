@@ -70,7 +70,7 @@ def view_products():
               LEFT JOIN categories c ON p.category_id = c.category_id """
     cursor.execute(sql)
     rows = cursor.fetchall()
-    print("----Available Products----")
+    print("\n----Available Products----")
     for row in rows:
         product_id, product_name, price, stock, category = row
         print(f"ID: {product_id} | {product_name} | {price} | Stock: {stock} | Category: {category}")
@@ -100,7 +100,7 @@ def place_order(user_id):
     view_products()
     product_id = int(input("Enter product ID:"))
     quantity = int(input("Enter the quantity:"))
-    sql = "SELECT product_id, stock FROM products WHERE product_id = %s"
+    sql = "SELECT price, stock FROM products WHERE product_id = %s"
     values = (product_id,)
     cursor.execute(sql, values)
     row = cursor.fetchone()
@@ -121,11 +121,13 @@ def place_order(user_id):
     #insert into orders
     sql = "INSERT INTO orders(user_id, total_amount, status) VALUES(%s, %s, 'Pending')" 
     values = (user_id, total_amount)
+    cursor.execute(sql, values)
     order_id = cursor.lastrowid
 
     #insert into order_items
     sql = "INSERT INTO order_items(order_id, product_id, quantity, price) VALUES(%s, %s, %s, %s)"
     values = (order_id, product_id, quantity, price)
+    cursor.execute(sql, values)
 
     #Updating stock
     sql = "UPDATE products SET stock= stock - %s WHERE product_id = %s"
@@ -151,7 +153,7 @@ def make_payment(user_id):
         return
     
     amount = result[0]
-    payment_type = ("Enter your payment type(credit card / Debit Card / UPI / Net Banking / Cash on Delivery): )")
+    payment_type = input("Enter your payment type(credit card / Debit Card / UPI / Net Banking / Cash on Delivery): )")
 
     #inserting into payments table
     sql = "INSERT INTO payments(order_id, amount, payment_type, status) VALUES(%s, %s, %s, 'Completed')"
@@ -173,8 +175,8 @@ def view_orders():
     cursor = conn.cursor()
     order_id = int(input("Enter your order ID to view your order:"))
     sql = "SELECT order_id, order_date, status, total_amount FROM orders WHERE order_id = %s"
-    values = (order_id) 
-    cursor.execute(sql,values)
+    values = (order_id,)
+    cursor.execute(sql, values)
     orders = cursor.fetchall()
     print("\n----Your Order----")
     for order in orders:
@@ -184,7 +186,7 @@ def view_orders():
                   FROM order_items oi
                   JOIN products ON oi.product_id = p.product_id
                   WHERE oi.order_id = %s"""
-        values = (sql, (order[0],))
+        values = (order[0],)
         cursor.execute(sql, values)
         items = cursor.fetchall()
         for item in items:
@@ -234,13 +236,19 @@ def main():
         if choice == "1":
             register_user()
         elif choice == "2":
-            login()
+            user_id = login()
         elif choice == "3":
             view_products()
         elif choice == "4":
-            place_order()
+            if user_id:
+                place_order(user_id)
+            else:
+                print("Please login first")
         elif choice == "5":
-            make_payment()
+            if user_id:
+                make_payment(user_id)
+            else:
+                print("Please login first")
         elif choice == "6":
             view_orders()
         elif choice == "7":
