@@ -27,6 +27,7 @@ def register_user():
         conn.commit()
     except mysql.connector.Error as err:
         print("Error:", err)
+    finally:
         conn.close()
 
 #user login 
@@ -50,8 +51,8 @@ def login():
         return user_id
     
     else:
-        sql ="INSERT INTO logins(user_id, status) VALUES(%s, %s)"
-        values = ("None", "Failed")
+        sql = "INSERT INTO logins(user_id, status) VALUES(%s, %s)"
+        values = (None, "Failed")
         cursor.execute(sql, values)
         conn.commit()
         print("Inavalid email or password" \
@@ -153,7 +154,7 @@ def make_payment(user_id):
         return
     
     amount = result[0]
-    payment_type = input("Enter your payment type(credit card / Debit Card / UPI / Net Banking / Cash on Delivery): )")
+    payment_type = input("Enter your payment type(credit card / Debit Card / UPI / Net Banking / Cash on Delivery):")
 
     #inserting into payments table
     sql = "INSERT INTO payments(order_id, amount, payment_type, status) VALUES(%s, %s, %s, 'Completed')"
@@ -183,9 +184,9 @@ def view_orders():
         print(f"order ID:{order[0]} | Order Date:{order[1]} | Status:{order[2]} | Total:₹{order[3]}")
 
         sql = """ SELECT p.product_name, oi.quantity, oi.price
-                  FROM order_items oi
-                  JOIN products ON oi.product_id = p.product_id
-                  WHERE oi.order_id = %s"""
+          FROM order_items oi
+          JOIN products p ON oi.product_id = p.product_id
+          WHERE oi.order_id = %s"""
         values = (order[0],)
         cursor.execute(sql, values)
         items = cursor.fetchall()
