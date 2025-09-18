@@ -217,4 +217,40 @@ def reports():
 
 #main function
 def main():
-    pass
+    user_id = None
+    while True:
+        print("""\n---- E-Commerce CLI ----
+1. Register
+2. Login
+3. View Products
+4. Place Order
+5. Make Payment
+6. View Orders
+7. Admin: Add Product
+8. Admin: Reports
+9. Exit""")
+        choice = input("Enter Your choice:")
+
+        if choice == "1":
+            register_user()
+        elif choice == "2":
+            login()
+        elif choice == "3":
+            view_products()
+        elif choice == "4":
+            place_order()
+        elif choice == "5":
+            make_payment()
+        elif choice == "6":
+            view_orders()
+        elif choice == "7":
+            add_product()
+        elif choice == "8":
+            reports()
+        elif choice == "9":
+            break
+        else:
+            print("Invalid Input, Try Again")
+
+if __name__ == "__main__":
+    main()
