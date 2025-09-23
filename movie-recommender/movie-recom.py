@@ -31,3 +31,12 @@ print("Train matrix shape:", user_movie_train.shape)
 # Mean Clustering
 user_means = user_movie_train.mean(axis=1)
 normalized = user_movie_train.sub(user_means, axis=0).fillna(0)
+
+#Fit KNN on users
+knn = NearestNeighbors(metric='cosine', algorithm='brute')
+knn.fit(normalized.values)
+
+user_id_to_index = {user_id: idx for idx, user_id in enumerate(normalized.index)}
+index_to_user_id = {idx: user_id for user_id, idx in user_id_to_index.items()}
+
+#User-based CF prediction
