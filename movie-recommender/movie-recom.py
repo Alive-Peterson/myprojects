@@ -63,3 +63,7 @@ def predict_rating_user_based(target_user_id, target_movie_id, k=5):
            return float(user_means.get(target_user_id, train_ratings['rating'].mean()))
     pred = user_means[target_user_id] + (numer / denom)
     return float(max(0.5, min(5.0, pred)))
+
+#RMSE root mean square Evaluation
+def rmse_on_test(k=5, n_samples=None):
+    sample = test_data if n_samples is None else test_data.sample(n_samples, random_state=42)
