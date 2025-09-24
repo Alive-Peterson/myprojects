@@ -40,3 +40,26 @@ user_id_to_index = {user_id: idx for idx, user_id in enumerate(normalized.index)
 index_to_user_id = {idx: user_id for user_id, idx in user_id_to_index.items()}
 
 #User-based CF prediction
+def predict_rating_user_based(target_user_id, target_movie_id, k=5):
+    if target_user_id not in user_id_to_index or target_movie_id not in user_movie_train.columns:
+        return None
+    user_idx = user_id_to_index[target_user_id]
+    distances, indices = knn.neighbors([normalized.values[user_idx]], n_neighbors = k+1)
+    distances, indices = distances.flatten(), indices.flatten()
+    sims = 1 - distances
+    neigh_indices = indices[indices != user_idx]
+    neigh_sims = sims[indices != user_idx]
+
+    numer, denom = 0.0, 0.0
+    for ni, sim in zip(neigh_indices, neigh_sims):
+        neighbor_user_id = index_to_user_id[ni]
+        neigh_rating = user_movie_train_filled.loc[neighbor_user_id, target_movie_id]
+        if neigh_rating > 0:
+            neigh_mean = user_means.get(neighbor_user_id, 0.0)
+            numer += sim * (neigh_rating - neigh_mean)
+            denom += abs(sim)
+
+        if denom == 0:
+           return float(user_means.get(target_user_id, train_ratings['rating'].mean()))
+    pred = user_means[target_user_id] + (numer / denom)
+    return float(max(0.5, min(5.0, pred)))
