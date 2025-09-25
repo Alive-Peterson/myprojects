@@ -44,7 +44,7 @@ def predict_rating_user_based(target_user_id, target_movie_id, k=5):
     if target_user_id not in user_id_to_index or target_movie_id not in user_movie_train.columns:
         return None
     user_idx = user_id_to_index[target_user_id]
-    distances, indices = knn.neighbors([normalized.values[user_idx]], n_neighbors = k+1)
+    distances, indices = knn.kneighbors([normalized.values[user_idx]], n_neighbors=k+1)
     distances, indices = distances.flatten(), indices.flatten()
     sims = 1 - distances
     neigh_indices = indices[indices != user_idx]
@@ -83,22 +83,41 @@ print(f"\nRMSE on test set: {rmse_val:.4f}, Predictions made: {n_pred}, Skipped:
 
 # recommending 
 def top_n_recommendations_for_user(user_id, k_neighbors=10, n_recs=10):
-    if user_id not in user_movie_train_filled.index:
+    if user_id not in user_id_to_index:
         return []
 
-    user_ratings = user_movie_train_filled.loc[user_id]
-    unrated_items = user_ratings[user_ratings == 0].index.tolist()
-    preds = []
-    for m in unrated_items:
-        p = predict_rating_user_based(user_id, m, k=k_neighbors)
-        if p is not None:
-            preds.append((m, p))
+    user_idx = user_id_to_index[user_id]  # map to row index
+    predictions = []
 
-    preds_sorted = sorted(preds, key=lambda x: x[1], reverse=True)[:n_recs]
-    recs = [(movies[movies['movieId']==mid]['title'].values[0], score) for mid, score in preds_sorted]
-    return recs
+    unrated_movies = user_movie_train_filled.columns[user_movie_train_filled.iloc[user_idx] == 0]
+
+    print(f"User {user_id} has {len(unrated_movies)} unrated movies. Starting prediction...")
+
+    for i, movie_id in enumerate(unrated_movies):
+        if i % 500 == 0:   # show progress every 500 movies
+            print(f"Processed {i}/{len(unrated_movies)} movies...")
+
+        try:
+            pred = predict_rating_user_based(user_id, movie_id, k=k_neighbors)
+            if pred is not None:
+                predictions.append((movie_id, pred))
+        except:
+            continue
+
+    if not predictions:
+        return []
+
+    predictions.sort(key=lambda x: x[1], reverse=True)
+    top_n = predictions[:n_recs]
+    return [(movies.loc[movies['movieId'] == mid, 'title'].values[0], score) for mid, score in top_n]
+
+
 
 # Example: top-10 for user 1
 print("\nTop-10 recommendations for user 1:")
-for title, score in top_n_recommendations_for_user(1, k_neighbors=10, n_recs=10):
-    print(f"{title} (pred {score:.2f})")
+recs = top_n_recommendations_for_user(1, k_neighbors=10, n_recs=10)
+if not recs:
+    print("No recommendations generated for this user.")
+else:
+    for title, score in recs:
+        print(f"{title} (pred {score:.2f})")
