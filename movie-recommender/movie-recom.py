@@ -67,3 +67,38 @@ def predict_rating_user_based(target_user_id, target_movie_id, k=5):
 #RMSE root mean square Evaluation
 def rmse_on_test(k=5, n_samples=None):
     sample = test_data if n_samples is None else test_data.sample(n_samples, random_state=42)
+    preds, truths, skipped = [], [], 0
+    for _, row in sample.iterrows():
+        u, m, r = row['userId'], row['movieId'], row['rating']
+        p = predict_rating_user_based(u, m, k=k)
+        if p is None:
+            skipped += 1
+            continue
+        preds.append(p)
+        truths.append(r)
+    mse = np.mean([(p - t)**2 for p, t in zip(preds, truths)])
+    return sqrt(mse), len(preds), skipped
+rmse_val, n_pred, skipped = rmse_on_test(k=5, n_samples=500)
+print(f"\nRMSE on test set: {rmse_val:.4f}, Predictions made: {n_pred}, Skipped: {skipped}")
+
+# recommending 
+def top_n_recommendations_for_user(user_id, k_neighbors=10, n_recs=10):
+    if user_id not in user_movie_train_filled.index:
+        return []
+
+    user_ratings = user_movie_train_filled.loc[user_id]
+    unrated_items = user_ratings[user_ratings == 0].index.tolist()
+    preds = []
+    for m in unrated_items:
+        p = predict_rating_user_based(user_id, m, k=k_neighbors)
+        if p is not None:
+            preds.append((m, p))
+
+    preds_sorted = sorted(preds, key=lambda x: x[1], reverse=True)[:n_recs]
+    recs = [(movies[movies['movieId']==mid]['title'].values[0], score) for mid, score in preds_sorted]
+    return recs
+
+# Example: top-10 for user 1
+print("\nTop-10 recommendations for user 1:")
+for title, score in top_n_recommendations_for_user(1, k_neighbors=10, n_recs=10):
+    print(f"{title} (pred {score:.2f})")
