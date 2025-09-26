@@ -58,7 +58,6 @@ Print top-10 movie recommendations for a given user
 Example console output:
 
 ```yaml
-Copy code
 ratings row: 100836
 movies row: 9742
 Train matrix shape: (610, 9066)
