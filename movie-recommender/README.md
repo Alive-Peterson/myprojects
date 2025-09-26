@@ -38,7 +38,7 @@ Copy code
    pip install pandas numpy scikit-learn
 Download and extract the MovieLens small dataset into the project folder.
 
-### ▶️ How to Run
+## ▶️ How to Run
 Run the script:
 
 bash
@@ -54,7 +54,7 @@ Compute RMSE on the test set
 
 Print top-10 movie recommendations for a given user
 
-### 🔢 Sample Output
+## 🔢 Sample Output
 Example console output:
 
 ```yaml
