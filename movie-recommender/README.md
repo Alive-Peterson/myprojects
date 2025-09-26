@@ -69,7 +69,7 @@ Star Wars: Episode IV - A New Hope (1977) (pred 4.78)
 The Empire Strikes Back (1980) (pred 4.65)
 Return of the Jedi (1983) (pred 4.59)
 ```
-...
+
 ## 🧠 Algorithm Overview
 Create User-Movie Matrix (users as rows, movies as columns).
 
