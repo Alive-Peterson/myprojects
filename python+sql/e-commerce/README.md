@@ -199,5 +199,6 @@ Add authentication/authorization for admin-specific tasks.
 
 ## 👤 Author
 
-Alive Peterson
-GitHub: @Alive-Peterson
+**Alive Peterson**  
+🔗 [GitHub: @Alive-Peterson](https://github.com/Alive-Peterson)  
+📧 alivepeterson2@gmail.com  

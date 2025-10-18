@@ -48,3 +48,8 @@ Refresh the dataset to view the latest results
 
 Interact with filters and visuals to explore insights
 
+## 👤 Author
+
+**Alive Peterson**  
+🔗 [GitHub: @Alive-Peterson](https://github.com/Alive-Peterson)  
+📧 alivepeterson2@gmail.com  

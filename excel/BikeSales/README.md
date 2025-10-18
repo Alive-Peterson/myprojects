@@ -45,3 +45,9 @@ Understand regional preferences
 Data-driven sales strategies
 
 Quick start: Check Dashboard for executive summary, use Pivot Table for detailed analysis.
+
+## 👤 Author
+
+**Alive Peterson**  
+🔗 [GitHub: @Alive-Peterson](https://github.com/Alive-Peterson)  
+📧 alivepeterson2@gmail.com  
