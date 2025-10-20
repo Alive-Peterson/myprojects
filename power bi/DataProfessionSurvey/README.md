@@ -39,7 +39,7 @@ Data_Profession_Survey.csv       → Source dataset
 README.md                        → Project documentation
 
 ## Preview
-![Dashboard]("C:\Users\peter\OneDrive\Desktop\myprojects\power bi\DataProfessionSurvey\Data Profession Survey Dashboard.png")
+![Dashboard](power bi/DataProfessionSurvey/Data Profession Survey Dashboard.png)
 
 ## 🚀 How to Use
 
