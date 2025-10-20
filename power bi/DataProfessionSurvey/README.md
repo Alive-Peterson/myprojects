@@ -38,6 +38,9 @@ Data Profession Survey.pbix      → Main Power BI dashboard
 Data_Profession_Survey.csv       → Source dataset
 README.md                        → Project documentation
 
+## Preview
+![Dashboard]("C:\Users\peter\OneDrive\Desktop\myprojects\power bi\DataProfessionSurvey\Data Profession Survey Dashboard.png")
+
 ## 🚀 How to Use
 
 Open the .pbix file in Power BI Desktop
