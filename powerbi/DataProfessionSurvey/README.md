@@ -38,8 +38,6 @@ Data Profession Survey.pbix      → Main Power BI dashboard
 Data_Profession_Survey.csv       → Source dataset
 README.md                        → Project documentation
 
-## Preview
-![Dashboard](powerbi/DataProfessionSurvey/data-profession-survey-dashboard.png)
 
 ## 🚀 How to Use
 
