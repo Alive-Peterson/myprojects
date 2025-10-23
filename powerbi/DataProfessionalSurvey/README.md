@@ -1,4 +1,4 @@
-# 📊 Data Profession Survey Dashboard
+# 📊 Data Professional Survey Dashboard
 ## 🧾 Project Overview
 
 This Power BI project analyzes survey data related to professionals working in data-related fields. The dashboard provides insights into trends, salaries, job satisfaction, and tools used across different data roles.
