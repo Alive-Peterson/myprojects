@@ -50,4 +50,4 @@ Quick start: Check Dashboard for executive summary, use Pivot Table for detailed
 
 **Alive Peterson**  
 🔗 [GitHub: @Alive-Peterson](https://github.com/Alive-Peterson)  
-📧 alivepeterson2@gmail.com  
+📧 alivepeterson2@gmail.com
