@@ -108,8 +108,9 @@ Some of the key insights generated from this project include:
 
 ## 📄 Author
 
-Developed by **Alive Peterson**
+**Alive Peterson**
 🔗 GitHub: [Alive-Peterson](https://github.com/Alive-Peterson)
+📧 alivepeterson2@gmail.com  
 
 ---
 
