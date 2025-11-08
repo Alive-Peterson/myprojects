@@ -92,6 +92,6 @@ Optionally, visualize the results in Tableau or Power BI.
 
 ## 🧩 Author
 
-Developed by **Alive Peterson**
-🔗 GitHub: [Alive-Peterson](https://github.com/Alive-Peterson)
+Developed by **Alive Peterson**<br>
+🔗 GitHub: [Alive-Peterson](https://github.com/Alive-Peterson)<br>
 📧 Email: [alivepeterson2@gmail.com](mailto:alivepeterson2@gmail.com)
