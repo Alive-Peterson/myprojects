@@ -105,6 +105,6 @@ Demonstrated how data visualization helps uncover business performance patterns.
 
 ## 👤 Author
 
- **Alive Peterson**
-🔗 GitHub: [Alive-Peterson](https://github.com/Alive-Peterson)
-📧 Email: [alivepeterson2@gmail.com](mailto:alivepeterson2@gmail.com)
+ **Alive Peterson**<br>
+🔗 GitHub: [Alive-Peterson](https://github.com/Alive-Peterson) <br>
+📧 Email: [alivepeterson2@gmail.com](mailto:alivepeterson2@gmail.com)<br>
