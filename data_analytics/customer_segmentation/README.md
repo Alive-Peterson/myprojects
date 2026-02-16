@@ -105,8 +105,6 @@ Customers were grouped into behavioral clusters such as:
 
 ### 📊 Visualizations Included
 
-- Distribution plots for RFM variables  
-- RFM segment bar charts  
 - Cohort retention heatmap  
 - Elbow curve for K selection  
 - Cluster comparison plots  
