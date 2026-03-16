@@ -1,0 +1,9 @@
+﻿Model ,Actual ,Predicted,Count
+Logistic Regression,No,No,906
+Logistic Regression,No,Yes,127
+Logistic Regression,Yes,No,148
+Logistic Regression,Yes,Yes,226
+Random Forest,No,No,925
+Random Forest,No,Yes,108
+Random Forest,Yes,No,186
+Random Forest,Yes,Yes,188
