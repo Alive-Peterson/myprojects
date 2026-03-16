@@ -176,7 +176,7 @@ This project helps organizations:
 
 ---
 
-# Author
+## Author
 
 **Alive Peterson**
 
@@ -184,6 +184,6 @@ GitHub: https://github.com/Alive-Peterson
 
 ---
 
-# 🪪 License
+## 🪪 License
 
 This project is open-source and available for educational and portfolio purposes.
