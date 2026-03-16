@@ -24,29 +24,29 @@ Customer_churn_analysis<br>
 <br>
 
 notebooks/<br>
+```text
+      a.Customer_churn.ipynb         - Exploratory Data Analysis and churn insights
 
-      a.Customer_churn.ipynb         - Exploratory Data Analysis and churn insights<br>
-
-      b.dashboard_dataset_prep.ipynb - Data preparation for Power BI dashboards<br>
-
+      b.dashboard_dataset_prep.ipynb - Data preparation for Power BI dashboards
+```
 
 data/<br>
+```text
+      a.Telco_customer_churn.csv - Original dataset
 
-      a.Telco_customer_churn.csv - Original dataset<br>
-
-      b.churn_dashboard_data.csv - Processed dataset used for dashboards<br>
-
+      b.churn_dashboard_data.csv - Processed dataset used for dashboards
+```
 
 dashboards/<br>
+```text
+       1. Executive_Overview.pbix
 
-       1. Executive_Overview.pbix<br>
+       2. Financial_Risk.pbix
 
-       2. Financial_Risk.pbix<br>
+       3. Customer_Segmentation.pbix
 
-       3. Customer_Segmentation.pbix<br>
-
-       4. Churn_Reasons.pbix<br>
-
+       4. Churn_Reasons.pbix
+```
 <br>
 
 README.md
@@ -169,17 +169,17 @@ Insights:
 
 ## ⚙️ Tools & Technologies
 
- Python               - Data analysis <br>
+ Python               - Data analysis 
 
- Pandas               - Data manipulation <br>
+ Pandas               - Data manipulation 
 
- NumPy                - Numerical operations <br>
+ NumPy                - Numerical operations 
 
- Matplotlib / Seaborn - Data visualization <br>
+ Matplotlib / Seaborn - Data visualization 
 
- Jupyter Notebook     - Analysis environment <br>
+ Jupyter Notebook     - Analysis environment 
 
- Power BI             - Interactive dashboards <br>
+ Power BI             - Interactive dashboards 
 
 
 ---
