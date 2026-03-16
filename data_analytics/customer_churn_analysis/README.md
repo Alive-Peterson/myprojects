@@ -20,23 +20,23 @@ The analysis is performed in **Python (Pandas, visualization libraries)** and th
 ---
 
 ## Project Structure
-Customer_churn_analysis/
-│
-├── notebooks/
-│ ├── Customer_churn.ipynb # Exploratory Data Analysis and churn insights
-│ ├── dashboard_dataset_prep.ipynb # Data preparation for Power BI dashboards
-│
-├── data/
-│ ├── Telco_customer_churn.csv # Original dataset
-│ ├── churn_dashboard_data.csv # Processed dataset used for dashboards
-│
-├── dashboards/
-│ ├── Executive_Overview.pbix
-│ ├── Financial_Risk.pbix
-│ ├── Customer_Segmentation.pbix
-│ ├── Churn_Reasons.pbix
-│
-└── README.md
+Customer_churn_analysis
+
+notebooks/
+      a.Customer_churn.ipynb         - Exploratory Data Analysis and churn insights
+      b.dashboard_dataset_prep.ipynb - Data preparation for Power BI dashboards
+
+data/
+      a.Telco_customer_churn.csv - Original dataset
+      b.churn_dashboard_data.csv - Processed dataset used for dashboards
+
+dashboards/
+       1. Executive_Overview.pbix
+       2. Financial_Risk.pbix
+       3. Customer_Segmentation.pbix
+       4. Churn_Reasons.pbix
+
+README.md
 
 
 ---
