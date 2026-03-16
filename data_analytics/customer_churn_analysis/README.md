@@ -20,21 +20,34 @@ The analysis is performed in **Python (Pandas, visualization libraries)** and th
 ---
 
 ## Project Structure
-Customer_churn_analysis
+Customer_churn_analysis<br>
+<br>
 
-notebooks/
-      a.Customer_churn.ipynb         - Exploratory Data Analysis and churn insights
-      b.dashboard_dataset_prep.ipynb - Data preparation for Power BI dashboards
+notebooks/<br>
 
-data/
-      a.Telco_customer_churn.csv - Original dataset
-      b.churn_dashboard_data.csv - Processed dataset used for dashboards
+      a.Customer_churn.ipynb         - Exploratory Data Analysis and churn insights<br>
 
-dashboards/
-       1. Executive_Overview.pbix
-       2. Financial_Risk.pbix
-       3. Customer_Segmentation.pbix
-       4. Churn_Reasons.pbix
+      b.dashboard_dataset_prep.ipynb - Data preparation for Power BI dashboards<br>
+
+
+data/<br>
+
+      a.Telco_customer_churn.csv - Original dataset<br>
+
+      b.churn_dashboard_data.csv - Processed dataset used for dashboards<br>
+
+
+dashboards/<br>
+
+       1. Executive_Overview.pbix<br>
+
+       2. Financial_Risk.pbix<br>
+
+       3. Customer_Segmentation.pbix<br>
+
+       4. Churn_Reasons.pbix<br>
+
+<br>
 
 README.md
 
@@ -156,12 +169,18 @@ Insights:
 
 ## ⚙️ Tools & Technologies
 
- Python               - Data analysis 
- Pandas               - Data manipulation 
- NumPy                - Numerical operations 
- Matplotlib / Seaborn - Data visualization 
- Jupyter Notebook     - Analysis environment 
- Power BI             - Interactive dashboards 
+ Python               - Data analysis <br>
+
+ Pandas               - Data manipulation <br>
+
+ NumPy                - Numerical operations <br>
+
+ Matplotlib / Seaborn - Data visualization <br>
+
+ Jupyter Notebook     - Analysis environment <br>
+
+ Power BI             - Interactive dashboards <br>
+
 
 ---
 
