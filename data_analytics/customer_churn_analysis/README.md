@@ -1,4 +1,4 @@
-# Customer Churn Analysis & Dashboard
+# Customer Churn Prediction & Retention Strategy using Machine Learning
 
 This project analyzes **customer churn behavior in a telecom company** using Python for data analysis and **Power BI for interactive dashboards**.  
 The objective is to understand **why customers leave**, identify **high-risk segments**, and provide insights that can help businesses **reduce churn and improve retention**.
