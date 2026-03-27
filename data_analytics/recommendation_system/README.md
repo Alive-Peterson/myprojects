@@ -92,7 +92,23 @@ Example:
 * Improved recommendation quality using hybrid model
 
 ---
+📊 Tableau Dashboard – Movie Insights
 
+File: Movie_Insights.twb
+
+🔹 Visualizations
+Top Movies (by User Rating)
+Most Popular Movies
+Genre Distribution
+Movie Popularity vs Rating
+Distribution of Movie Ratings
+🔹 KPI Cards
+🎥 Total Movies: 9,724
+⭐ Average Rating: 3.263
+🧾 Total Ratings: 100,942
+
+This dashboard provides an interactive overview of movie trends, helping understand user preferences and rating behavior.
+---
 ## ▶️ How to Run
 
 1. Clone the repository:
