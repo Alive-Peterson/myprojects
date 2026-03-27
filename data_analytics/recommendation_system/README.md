@@ -102,6 +102,7 @@ File: Movie_Insights.twb
 * Genre Distribution
 * Movie Popularity vs Rating
 * Distribution of Movie Ratings
+<br>
 🔹 KPI Cards
 * 🎥 Total Movies: 9,724
 * ⭐ Average Rating: 3.263
