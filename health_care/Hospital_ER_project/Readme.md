@@ -14,10 +14,10 @@ The dashboard helps healthcare administrators monitor ER performance, identify o
  - Discover trends across age groups and demographics.
 
 ### Tools & Technologies
-Power BI – Dashboard creation and data visualization
-SQL – Data analysis and KPI extraction
-DAX – Calculated measures and business metrics
-Excel/CSV – Data storage and preprocessing
+- Power BI – Dashboard creation and data visualization
+- SQL – Data analysis and KPI extraction
+- DAX – Calculated measures and business metrics
+- Excel/CSV – Data storage and preprocessing
 
 
 ### Project Files
@@ -32,42 +32,42 @@ Excel/CSV – Data storage and preprocessing
 
 The dataset contains 9,216 patient records and includes:
 
-Patient demographics
-Admission information
-Waiting times
-Satisfaction scores
-Department referrals
-Age groups
-Gender distribution
-Admission status
-Key Attributes
-Patient ID
-Admission Date & Time
-Gender
-Age
-Race
-Department Referral
-Admission Flag
-Satisfaction Score
-Wait Time
-Age Group
-Wait Category
+- Patient demographics
+- Admission information
+- Waiting times
+- Satisfaction scores
+- Department referrals
+- Age groups
+- Gender distribution
+- Admission status
+- Key Attributes
+- Patient ID
+- Admission Date & Time
+- Gender
+- Age
+- Race
+- Department Referral
+- Admission Flag
+- Satisfaction Score
+- Wait Time
+- Age Group
+- Wait Category
 
 ### Dashboard KPIs
 
 The dashboard tracks:
 
-Patient Metrics
-Total Patients
-Average Wait Time
-Average Satisfaction Score
-Admission Rate
-Operational Metrics
-Department Referral Analysis
-Wait Category Distribution
-Demographic Metrics
-Gender Distribution
-Age Group Analysis
+- Patient Metrics
+- Total Patients
+- Average Wait Time
+- Average Satisfaction Score
+- Admission Rate
+- Operational Metrics
+- Department Referral Analysis
+- Wait Category Distribution
+- Demographic Metrics
+- Gender Distribution
+- Age Group Analysis
 
 ### Key Insights
 - Patient Volume
@@ -88,11 +88,11 @@ Not Admitted: ~50%
 - Department Referrals
 Most referred departments included:
 
-General Practice
-Orthopedics
-Physiotherapy
-Cardiology
-Neurology
+  - General Practice
+  - Orthopedics
+  - Physiotherapy
+  - Cardiology
+  - Neurology
 
 - Demographic Analysis
 Patient visits were segmented by age groups and gender.
@@ -100,43 +100,43 @@ The dashboard highlights which demographics contribute most to ER traffic.
 
 
 ### Dashboard Features
-Executive Summary
+- Executive Summary
 
 Provides a quick overview of:
 
-Total Patients
-Average Wait Time
-Satisfaction Score
-Admission Rate
-Wait Time Analysis
-Short Wait
-Medium Wait
-Long Wait
-Department Referral Analysis
+  - Total Patients
+  - Average Wait Time
+  - Satisfaction Score
+  - Admission Rate
+  - Wait Time Analysis
+  - Short Wait
+  - Medium Wait
+  - Long Wait
 
+
+- Department Referral Analysis
 Identifies departments receiving the highest patient referrals.
 
-Patient Demographics
+- Patient Demographics
 
 Breakdowns by:
+  - Age Group
+  - Gender
+  - Race
+  - Time-Based Analysis
+  - Monthly patient trends
+  - Peak visit periods
+  - Daily traffic patterns
 
-Age Group
-Gender
-Race
-Time-Based Analysis
-Monthly patient trends
-Peak visit periods
-Daily traffic patterns
-💡 Business Value
-
+- Business Value
 This dashboard enables hospital management to:
 
-Improve patient flow management
-Reduce waiting times
-Monitor patient satisfaction
-Allocate resources more effectively
-Identify high-demand departments
-Support data-driven operational decisions
+ - Improve patient flow management
+ - Reduce waiting times
+ - Monitor patient satisfaction
+ - Allocate resources more effectively
+ - Identify high-demand departments
+ - Support data-driven operational decisions
 
 Example:
 
@@ -147,15 +147,15 @@ Example:
 
 The project contains SQL queries for:
 
-Total patient calculations
-Average waiting time
-Satisfaction analysis
-Admission statistics
-Department referral analysis
-Gender distribution
-Age group segmentation
-Peak day analysis
-Monthly trend analysis
+- Total patient calculations
+- Average waiting time
+- Satisfaction analysis
+- Admission statistics
+- Department referral analysis
+- Gender distribution
+- Age group segmentation
+- Peak day analysis
+- Monthly trend analysis
 
 ### 👨‍💻 Author
 
