@@ -1,4 +1,4 @@
-# Hospital Emergency Room Analytics Dashboard
+# Hospital Emergency Room Analysis - SQL + Power BI
 ## Project Overview
 
 This project analyzes Emergency Room (ER) operations using SQL and Power BI to uncover insights into patient volume, waiting times, admissions, satisfaction levels, and departmental referrals.
@@ -137,9 +137,6 @@ Monitor patient satisfaction
 Allocate resources more effectively
 Identify high-demand departments
 Support data-driven operational decisions
-📷 Dashboard Preview
-
-Add screenshots of your Power BI dashboard here.
 
 Example:
 
