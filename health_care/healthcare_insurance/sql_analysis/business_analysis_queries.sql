@@ -51,4 +51,68 @@ FROM claims
 WHERE billing_amount > 0 
 GROUP BY insurance_provider 
 ORDER BY reimbursement_pct DESC;
-      
+
+
+-- 6. Cost per Day by Medical Condition
+SELECT 
+      medical_condition, 
+      ROUND(SUM(billing_amount) / SUM(length_of_stay), 2) AS cost_per_day 
+FROM claims 
+GROUP BY medical_condition 
+ORDER BY cost_per_day DESC;
+
+
+-- 7. Readmission Suspicion
+SELECT 
+	  patient_name, 
+      COUNT(*) AS admissions, 
+      MIN(admission_date) AS first_admission, 
+      MAX(admission_date) AS last_admission 
+FROM claims 
+GROUP BY patient_name HAVING admissions >= 3 
+ORDER BY admissions DESC LIMIT 20;
+
+
+-- 8. Top 5 Doctors by Revenue
+SELECT 
+      doctor,
+      COUNT(*) AS patients,
+      ROUND(SUM(billing_amount),2) AS revenue_generated
+FROM claims
+GROUP BY doctor
+ORDER BY revenue_generated DESC
+LIMIT 5;
+
+-- 9. Ranking Hospitals Within Each Insurance Provider (Window Function)
+
+SELECT *
+FROM (
+    SELECT
+        insurance_provider,
+        hospital,
+        ROUND(SUM(billing_amount), 2) AS total_billing,
+        RANK() OVER (
+            PARTITION BY insurance_provider
+            ORDER BY SUM(billing_amount) DESC
+        ) AS provider_rank
+    FROM claims
+    GROUP BY insurance_provider, hospital
+) ranked
+WHERE provider_rank <= 3;
+
+
+
+-- 10. High-Risk Financial Claims
+
+SELECT
+    claim_id,
+    hospital,
+    medical_condition,
+    billing_amount,
+    reimbursement_amount,
+    patient_payable,
+    ROUND(patient_payable / billing_amount * 100, 2) AS patient_burden_pct
+FROM claims
+WHERE patient_payable / billing_amount > 0.5
+ORDER BY patient_burden_pct DESC, billing_amount DESC
+LIMIT 20;
