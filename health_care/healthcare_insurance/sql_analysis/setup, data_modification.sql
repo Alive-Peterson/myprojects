@@ -25,14 +25,19 @@ MODIFY COLUMN `Room Number` INT;
 -- Rename columns
 ALTER TABLE claims
 RENAME COLUMN `Name` TO patient_name,
+RENAME COLUMN `Age` TO age, 
+RENAME COLUMN `Gender` TO gender,
 RENAME COLUMN `Blood Type` TO blood_type,
 RENAME COLUMN `Medical Condition` TO medical_condition,
 RENAME COLUMN `Date of Admission` TO admission_date,
+RENAME COLUMN `Doctor` TO doctor,
+RENAME COLUMN `Hospital` TO hospital,
 RENAME COLUMN `Insurance Provider` TO insurance_provider,
 RENAME COLUMN `Billing Amount` TO billing_amount,
 RENAME COLUMN `Room Number` TO room_number,
 RENAME COLUMN `Admission Type` TO admission_type,
 RENAME COLUMN `Discharge Date` TO discharge_date,
+RENAME COLUMN `Medication` TO medication,
 RENAME COLUMN `Test Results` TO test_results,
 RENAME COLUMN `Claim ID` TO claim_id,
 RENAME COLUMN `Length of Stay` TO length_of_stay,
@@ -40,4 +45,5 @@ RENAME COLUMN `Age Group` TO age_group,
 RENAME COLUMN `Cost Category` TO cost_category,
 RENAME COLUMN `Claim Status` TO claim_status,
 RENAME COLUMN `Reimbursement Amount` TO reimbursement_amount,
-RENAME COLUMN `Patient Payable` TO patient_payable;
+RENAME COLUMN `Patient Payable` TO patient_payable
+;
