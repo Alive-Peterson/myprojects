@@ -196,11 +196,8 @@ This project helps insurance and healthcare organizations to:
 
 ## 📷 Dashboard Preview
 
-Add screenshots of your Power BI dashboard here.
-
-```markdown
 ![Claims Dashboard](images/claims_dashboard.png)
-```
+
 
 ---
 
