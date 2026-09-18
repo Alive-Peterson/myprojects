@@ -71,9 +71,14 @@ financial_performance_and_profitability/
 │   ├── FMCG_Sales_Data_Cleaning_and_Feature_Engineering.ipynb
 │   └── FMCG_Sales_Profitability_Analysis.ipynb
 │
+├── images/
+│   ├── financial_performance_overview.png
+│   └── online_profitability_analysis.png
+│
 ├── financial_performance_queries.sql
 │
 └── README.md
+
 ~~~
 
 ---
